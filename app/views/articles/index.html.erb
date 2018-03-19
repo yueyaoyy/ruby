@@ -1,0 +1,50 @@
+<h1>Listening articles</h1>
+
+<table>
+  <tr>
+		<th>Title</th>
+		<th>Text</th>
+		<th colspan='2'></th>
+	</tr>
+
+	<% @articles.each do |article| %>
+		<tr>
+			<td><%= article.title %></td>
+			<td><%= article.text %></td>
+			<td><%= link_to 'showDetail', article_path(article) %></td>
+			<td><%= link_to 'edit', edit_article_path(article) %></td>
+		</tr>
+	<% end %>
+</table>
+
+<%= link_to 'New Article', new_article_path %>
+
+
+<h1>Welcome#index</h1>
+<%= link_to 'My Blog', controller: 'articles' %>
+<h2>to rails</h2>
+
+
+<h1>Listing articles</h1>
+<%= link_to 'New Article', new_article_path %>
+<table>
+  <tr>
+		<th>Title</th>
+		<th>Text</th>
+		<th colspan='3'></th>
+	</tr>
+
+	<% @articles.each do |article| %>
+		<tr>
+			<td><%= article.title %></td>
+			<td><%= article.text %></td>
+			<td><%= link_to 'Show', article_path(article) %></td>
+			<td><%= link_to 'Edit', edit_article_path(article) %></td>
+			<%# The method: :delete and data: { confirm: 'Are you sure?' } options are used as HTML5 attributes so that when the link is clicked, Rails will first show a confirm dialog to the user, and then submit the link with method delete. This is done via the JavaScript file rails-ujs which is automatically included in your application's layout (app/views/layouts/application.html.erb) when you generated the application. Without this file, the confirmation dialog box won't appear. %>
+			<%# http://guides.rubyonrails.org/working_with_javascript_in_rails.html %>
+			<td><%= link_to 'Destory', article_path(article),
+																	method: :delete,
+																	data: { confirm: 'Are you sure?'} %></td>
+		</tr>
+	<% end %>
+</table>
